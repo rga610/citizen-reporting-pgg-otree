@@ -69,19 +69,25 @@ class Subsession(BaseSubsession):
                 # Field is None or not accessible, skip this player
                 pass
         
+        # Ensure treatment is set
+        try:
+            treatment_value = self.treatment
+        except:
+            treatment_value = 1
+        
         if contributions:
             return {
                 'avg_contribution': sum(contributions)/len(contributions),
                 'min_contribution': min(contributions),
                 'max_contribution': max(contributions),
-                'treatment': self.treatment,
+                'treatment': treatment_value,
             }
         else:
             return {
                 'avg_contribution': '(no data)',
                 'min_contribution': '(no data)',
                 'max_contribution': '(no data)',
-                'treatment': self.treatment,
+                'treatment': treatment_value,
             }
 
 

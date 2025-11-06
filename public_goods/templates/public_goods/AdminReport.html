@@ -1,14 +1,22 @@
+{% load otree static %}
+
 <table class="table">
     <tr>
         <th>Average contribution</th>
-        <td>{{ avg_contribution }}</td>
+        <td>{{ avg_contribution|default:"(no data)" }}</td>
     </tr>
     <tr>
         <th>Min contribution</th>
-        <td>{{ min_contribution }}</td>
+        <td>{{ min_contribution|default:"(no data)" }}</td>
     </tr>
     <tr>
         <th>Max contribution</th>
-        <td>{{ max_contribution }}</td>
+        <td>{{ max_contribution|default:"(no data)" }}</td>
     </tr>
+    {% if treatment %}
+    <tr>
+        <th>Treatment Group</th>
+        <td>{{ treatment }}</td>
+    </tr>
+    {% endif %}
 </table>
