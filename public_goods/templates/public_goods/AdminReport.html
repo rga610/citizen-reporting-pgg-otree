@@ -3,15 +3,15 @@
 <table class="table">
     <tr>
         <th>Average contribution</th>
-        <td>{{ avg_contribution|default:"(no data)" }}</td>
+        <td>{% if avg_contribution %}{{ avg_contribution }}{% else %}(no data){% endif %}</td>
     </tr>
     <tr>
         <th>Min contribution</th>
-        <td>{{ min_contribution|default:"(no data)" }}</td>
+        <td>{% if min_contribution %}{{ min_contribution }}{% else %}(no data){% endif %}</td>
     </tr>
     <tr>
         <th>Max contribution</th>
-        <td>{{ max_contribution|default:"(no data)" }}</td>
+        <td>{% if max_contribution %}{{ max_contribution }}{% else %}(no data){% endif %}</td>
     </tr>
     {% if treatment %}
     <tr>
