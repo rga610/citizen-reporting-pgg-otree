@@ -59,7 +59,16 @@ class Subsession(BaseSubsession):
             self.treatment = 1
     
     def vars_for_admin_report(self):
-        contributions = [p.contribution for p in self.get_players() if p.contribution != None]
+        contributions = []
+        for p in self.get_players():
+            try:
+                # Safely check if contribution field has a value
+                if p.contribution is not None:
+                    contributions.append(p.contribution)
+            except (AttributeError, ValueError, TypeError):
+                # Field is None or not accessible, skip this player
+                pass
+        
         if contributions:
             return {
                 'avg_contribution': sum(contributions)/len(contributions),
