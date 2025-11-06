@@ -45,16 +45,19 @@ REAL_WORLD_CURRENCY_CODE = "USD"
 USE_POINTS = False
 INSTALLED_APPS = ["otree"]
 
-# Database configuration - Otree 5.x handles this automatically
-# but we can specify if needed
+# Database configuration for Railway/Production
+# Railway provides DATABASE_URL for PostgreSQL
 if "DATABASE_URL" in os.environ:
+    import dj_database_url
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.environ.get("DATABASE_URL", "_defaultdb"),
-        }
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=False,
+        )
     }
 else:
+    # Local development - use SQLite
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

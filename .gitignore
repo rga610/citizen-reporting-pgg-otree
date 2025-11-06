@@ -29,7 +29,9 @@ env/
 # Otree
 db.sqlite3
 *.db
-_static/
+# _static/ - Keep this directory, just ignore contents
+_static/*
+!_static/.gitkeep
 
 # IDE
 .vscode/
