@@ -1,0 +1,82 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Round {{ round_number }} Results
+{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light mb-3">
+    <div class="card-body">
+        <h5>Round {{ round_number }} of {{ total_rounds }} - Results</h5>
+        
+        <table class="table table-sm" style="width:100%; margin-top:20px;">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th class="text-end">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Your contribution:</strong></td>
+                    <td class="text-end">{{ player.contribution }} points</td>
+                </tr>
+                <tr>
+                    <td>Points you kept:</td>
+                    <td class="text-end">{{ points_kept }} points</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><hr/></td>
+                </tr>
+                <tr>
+                    <td><strong>Other participants' contributions:</strong></td>
+                    <td></td>
+                </tr>
+                {% for p in player.get_others_in_group %}
+                <tr>
+                    <td class="ps-4">Participant {{ p.id_in_group }}:</td>
+                    <td class="text-end">{{ p.contribution }} points</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2"><hr/></td>
+                </tr>
+                <tr>
+                    <td><strong>Total group contribution:</strong></td>
+                    <td class="text-end">{{ group.total_contribution }} points</td>
+                </tr>
+                <tr>
+                    <td>Total public good value (×{{ Constants.multiplier }}):</td>
+                    <td class="text-end">{{ total_earnings }} points</td>
+                </tr>
+                <tr>
+                    <td>Your share of public good:</td>
+                    <td class="text-end">{{ group.individual_share }} points</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><hr/></td>
+                </tr>
+                <tr class="table-success">
+                    <td><strong>Your payoff this round:</strong></td>
+                    <td class="text-end"><strong>{{ player.payoff }} points</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% if is_final_round %}
+    <div class="alert alert-info">
+        <strong>This was the final round!</strong> Please proceed to see your total earnings.
+    </div>
+{% else %}
+    <p class="text-muted">
+        The next round will begin shortly.
+    </p>
+{% endif %}
+
+{% next_button %}
+
+{% endblock %}

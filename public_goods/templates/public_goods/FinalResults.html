@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Experiment Complete - Final Results
+{% endblock %}
+
+{% block content %}
+
+<div class="card bg-success text-white mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Experiment Complete!</h3>
+        <p class="card-text">
+            Thank you for participating in this citizen reporting experiment. 
+            You have completed all {{ num_rounds }} rounds.
+        </p>
+    </div>
+</div>
+
+<div class="card bg-light mb-3">
+    <div class="card-body">
+        <h5>Your Total Earnings</h5>
+        <p class="lead">
+            <strong>Total payoff across all rounds: {{ total_payoff }} points</strong>
+        </p>
+        <p class="text-muted">
+            This amount represents your total earnings from all {{ num_rounds }} rounds of the experiment.
+        </p>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Next Steps:</strong>
+    <ul class="mb-0">
+        <li>Please wait for further instructions from the experimenter.</li>
+        <li>Do not close this browser window until instructed.</li>
+    </ul>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,54 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Round {{ round_number }} of {{ total_rounds }}: Your Decision
+{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light mb-3">
+    <div class="card-body">
+        <p>
+            <strong>Round {{ round_number }} of {{ total_rounds }}</strong>
+        </p>
+        <p>
+            You have {{ Constants.endowment }} points available. How much would you like to contribute 
+            to reporting faulty public infrastructure?
+        </p>
+    </div>
+</div>
+
+{% formfield player.contribution label=contribution_label %}
+
+<p class="text-muted">
+    <small>
+        Points you keep: <span id="points-kept">{{ Constants.endowment }}</span><br>
+        (This will update as you enter your contribution)
+    </small>
+</p>
+
+{% next_button %}
+
+<div class="mt-3">
+    {% include Constants.instructions_template %}
+</div>
+
+<script>
+    // Update points kept display
+    document.addEventListener('DOMContentLoaded', function() {
+        const contributionField = document.querySelector('input[name="contribution"]');
+        const pointsKeptSpan = document.getElementById('points-kept');
+        const endowment = {{ endowment_value }};
+        
+        if (contributionField && pointsKeptSpan) {
+            contributionField.addEventListener('input', function() {
+                const contribution = parseFloat(this.value) || 0;
+                const kept = endowment - contribution;
+                pointsKeptSpan.textContent = Math.max(0, kept);
+            });
+        }
+    });
+</script>
+
+{% endblock %}

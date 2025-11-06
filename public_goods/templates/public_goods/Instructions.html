@@ -1,0 +1,65 @@
+{% load otree static %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+    <h3>
+        How the Experiment Works
+    </h3>
+
+    <h5>Group Structure</h5>
+    <p>
+        You will be randomly assigned to a group of <strong>{{ Constants.players_per_group }} participants</strong>. 
+        Each participant in your group represents a citizen in the same community.
+    </p>
+
+    <h5>Your Endowment</h5>
+    <p>
+        At the start of each round, you will receive <strong>{{ Constants.endowment }} points</strong>. 
+        These points represent resources (time, effort, or tokens) that you can use to report faulty 
+        public infrastructure.
+    </p>
+
+    <h5>Your Decision</h5>
+    <p>
+        In each round, you decide how much to contribute to reporting public infrastructure issues. 
+        You can contribute any amount from <strong>0 to {{ Constants.endowment }}</strong> points. 
+        The points you do not contribute, you keep for yourself.
+    </p>
+
+    <h5>How Earnings Are Calculated</h5>
+    <p>
+        The experiment works as follows:
+    </p>
+    <ol>
+        <li>All contributions from your group members are added together to get the <strong>total contribution</strong>.</li>
+        <li>This total is multiplied by a factor of <strong>{{ Constants.multiplier }}</strong> to determine the 
+            <strong>total value of the public good</strong> (improved infrastructure reporting).</li>
+        <li>This total value is then <strong>divided equally</strong> among all {{ Constants.players_per_group }} 
+            participants in your group, regardless of how much each person contributed.</li>
+        <li>Your final payoff for the round equals:
+            <ul>
+                <li>The points you kept ({{ Constants.endowment }} - your contribution), <strong>plus</strong></li>
+                <li>Your equal share of the public good value</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h5>Example</h5>
+    <p>
+        Suppose you contribute 50 points, and the other participants in your group 
+        also contribute 50 points each. The total contribution would be 
+        {{ Constants.players_per_group }} × 50 points. 
+        This is multiplied by {{ Constants.multiplier }} to determine the total public good value. 
+        This total value is then divided equally among all {{ Constants.players_per_group }} participants. 
+        Your payoff equals the points you kept ({{ Constants.endowment }} - 50) plus your equal share of the public good.
+    </p>
+
+    <h5>Multiple Rounds</h5>
+    <p>
+        The experiment consists of <strong>{{ Constants.num_rounds }} rounds</strong>. In each round, you will make 
+        the same decision. Your group composition will remain the same throughout all rounds. 
+        Your final payment will be based on your total earnings across all rounds.
+    </p>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome: Citizen Reporting Experiment
+{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light mb-3">
+    <div class="card-body">
+        <h3 class="card-title">Citizen Reporting: Public Infrastructure</h3>
+        
+        <p>
+            Welcome to this experiment on citizen reporting. In this study, you will take on the role of a <strong>citizen</strong> 
+            in a community where public infrastructure (such as roads, bridges, streetlights, etc.) may need maintenance or repair.
+        </p>
+        
+        <p>
+            As a citizen, you have the opportunity to contribute to a <strong>public good</strong> by reporting faulty or 
+            damaged public infrastructure. Your contributions help improve the overall quality of public infrastructure 
+            in your community, which benefits everyone.
+        </p>
+        
+        <p>
+            The experiment will proceed in multiple rounds. In each round, you will decide how much to contribute 
+            to reporting public infrastructure issues. The decisions you make will affect both your own outcomes 
+            and the outcomes of other participants in your group.
+        </p>
+        
+        <p>
+            <strong>Treatment Group: {{ treatment }}</strong>
+        </p>
+        
+        <p>
+            Please read the instructions carefully on the next page to understand how the experiment works.
+        </p>
+    </div>
+</div>
+
+{% next_button %}
+
+{% endblock %}
+
